@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!--    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" >-->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/RestaurantView.css">
+    <title>{{title}}</title>
+</head>
+<body>
+
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <img class="img-fluid rs-image" src="../{{restaurant.front}}" alt="Naslovna slika" style="width: 100vw">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div>
+            <h1>{{restaurant.name}}</h1>
+            <h2>Opis</h2>
+            <p>{{restaurant.description}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron mb-5" >
+    <div class="container ">
+        <div class="row">
+            <h2>Urnik</h2><br>
+        </div>
+        <div class="row mt-4">
+
+            <table>
+                <tr>
+                    <th>PON&nbsp;&nbsp;&nbsp;</th>
+                    <th>TOR&nbsp;&nbsp;&nbsp;</th>
+                    <th>SRE&nbsp;&nbsp;&nbsp;</th>
+                    <th>ČET&nbsp;&nbsp;&nbsp;</th>
+                    <th>PET&nbsp;&nbsp;&nbsp;</th>
+                    <th>SOB&nbsp;&nbsp;&nbsp;</th>
+                    <th>NED&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+                <tr>
+                    {{#each restaurant.timeTable as |dan|}}
+                        <td>{{dan}}&nbsp;&nbsp;&nbsp;</td>
+                    {{/each}}
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row mt-4 justify-content-end mt-2 ">
+        <a class="btn btn-primary btn-lg" href="/commentPage/{{restaurant._id}}" role="button">Glej komentarje</a>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<!--<script src="javascripts/popper.min.js"></script>-->
+<!--<script src="javascripts/bootstrap.min.js"></script>-->
+
+
+
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+</body>
+</html>

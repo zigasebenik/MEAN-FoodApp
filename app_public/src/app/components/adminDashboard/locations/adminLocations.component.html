@@ -1,0 +1,228 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+
+    <!--            User panel (left size)      -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
+      <app-admin-panel></app-admin-panel>
+    </div>
+
+    <!--            User activities - double click to show more info in new panel    -->
+    <div class = "col userActivities">
+
+      <div class = "row">
+        <div class = "col">
+          <h3 style = "margin-bottom: 30px">Lokacije</h3>
+        </div>
+        <div class = "col-6 col-md-3" style="text-align: right">
+          <!--                    <div class="input-group mb-2">-->
+          <!--                        <div class="input-group-prepend">-->
+          <!--                            <div class="input-group-text">-->
+          <!--                                <i class="fas fa-search"></i>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+          <!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+          <!--                    </div>-->
+        </div>
+
+      </div>
+
+      <div class = "row">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
+          <thead>
+          <tr>
+            <th scope="col" style="word-wrap: break-word">#id</th>
+            <th scope="col" style="word-wrap: break-word">Lokacija</th>
+            <th scope="col" style="word-wrap: break-word">Ocena</th>
+            <th scope="col" style="word-wrap: break-word">Izbriši</th>
+            <th scope="col" style="word-wrap: break-word">Pregled</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let location of locations">
+            <th scope="row" style="word-wrap: break-word">{{location._id}}</th>
+            <td style="word-wrap: break-word">
+              {{location.name}}
+            </td>
+            <td style="word-wrap: break-word">
+              {{location.rating}}
+            </td>
+            <td>
+              <form method="post" id = "{{ location._id}}" action = "/api/restaurants/delete">
+                <input type = "hidden" name="restaurantID" value="{{location._id}}">
+                <input type="hidden" value="/admin-locations" name="returnADR">
+                <button class="btn btn-link" (click)="deleteLocation(location._id)">
+                  <i style="color: darkred" class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+            <td>
+              <button class="btn btn-link" (click)="redirectToLocation(location._id)" >
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+
+          <!--    Modal for showing correction details-->
+          <!--                        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "{{changeID location._id}}">-->
+          <!--                            <div class="modal-dialog" role="document">-->
+          <!--                                <div class="modal-content">-->
+          <!--                                    <div class="modal-header">-->
+          <!--                                        <h5 class="modal-title">Podrobnosti elementa</h5>-->
+          <!--                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--                                            <span aria-hidden="true">&times;</span>-->
+          <!--                                        </button>-->
+          <!--                                    </div>-->
+          <!--                                    <div class = "modal-body">-->
+          <!--                                        <h6 style = "margin-bottom: 25px"><i>Objavljeno: {{date location.date}}</i></h6>-->
+          <!--                                        <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">-->
+          <!--                                            <input type="hidden" name="restaurantID" value="{{location._id}}">-->
+          <!--                                            <input type="hidden" name="returnADR" value="admin-locations">-->
+          <!--                                            <div class="form-group">-->
+          <!--                                                <label for="name">Naziv</label>-->
+          <!--                                                <input type="text" class="form-control" id="name" value="{{location.name}}">-->
+          <!--                                            </div>-->
+
+          <!--&lt;!&ndash;                                            <div class="form-group">&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                <label for="status">Status</label>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                <select class="form-control" id="status">&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                    <option>objavljeno, aktivno</option>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                    <option>objavljeno, neaktivno</option>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                    <option>neaktivno</option>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                    <option>na čakanju</option>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                    <option>arhivirano</option>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                                </select>&ndash;&gt;-->
+          <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+
+          <!--                                            <div class="form-group">-->
+          <!--                                                <label for="locationStreet">Lokacija</label>-->
+          <!--                                                <input type="text" class="form-control" id="address" value = "{{location.address}}">-->
+          <!--&lt;!&ndash;                                                <input type="text" class="form-control" id="locationCity" value="1000 Ljubljana">&ndash;&gt;-->
+          <!--                                            </div>-->
+
+          <!--                                            <div class="form-group">-->
+          <!--                                                <label for="openingHours">Odpiralni čas</label>-->
+          <!--                                                <div class="row">-->
+          <!--                                                    <div class="col-md-12 col-sm-12">-->
+          <!--&lt;!&ndash;                                                        <form>&ndash;&gt;-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Ponedeljek:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="string" class="form-control hour-form" placeholder="Od" value="{{location..timeTable.monday}}">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Torek:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Sreda:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Četrtek:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Petek:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Sobota:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--                                                            <div class="separate-2"></div>-->
+          <!--                                                            <div class="form-row day-row">-->
+          <!--                                                                <div class="col-md-4 day-label">-->
+          <!--                                                                    <span>Nedelja:</span>-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                                <div class="col-md-4">-->
+          <!--                                                                    <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">-->
+          <!--                                                                </div>-->
+          <!--                                                            </div>-->
+          <!--&lt;!&ndash;                                                        </form>&ndash;&gt;-->
+          <!--                                                    </div>-->
+          <!--                                                </div>-->
+          <!--                                            </div>-->
+
+          <!--                                            <h6>Dodatni atributi</h6>-->
+          <!--                                            <div class="form-group">-->
+
+          <!--                                                <div class="form-check">-->
+          <!--                                                    <input class="form-check-input" type="checkbox" value="" id="studentsMenu">-->
+          <!--                                                    <label class="form-check-label" for="studentsMenu">-->
+          <!--                                                        Študentski boni-->
+          <!--                                                    </label>-->
+          <!--                                                </div>-->
+
+          <!--                                                <input type="text" class="form-control" id="studentsPay" placeholder="Doplačilo" value="{{location.studentPrice}}">-->
+          <!--                                            </div>-->
+
+          <!--                                            <div class="form-group">-->
+          <!--                                                <label for="additionalInformations">Dodatne informacije</label>-->
+          <!--                                                <textarea class="form-control" id="additionalInformations" rows="5">{{location.description}}</textarea>-->
+          <!--                                            </div>-->
+
+          <!--                                            <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>-->
+
+          <!--                                        </form>-->
+          <!--                                    </div>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

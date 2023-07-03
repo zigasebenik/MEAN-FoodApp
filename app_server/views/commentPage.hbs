@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" >-->
+    <script src="../HBS_Helpers/changeString.js"></script>
+    <!-- STARS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/commentPage.css">
+    <title>{{title}}</title>
+</head>
+<body >
+
+<div class="container mb-5" onload="updateRestaurantRate('{{restaurantID}}')">
+
+    <div class="card mt-5">
+        <div class="row">
+            <div class="col-12 mt-3" >
+
+                <h2 class="card-title h2 text-center">Komentarji - {{ restaurantName }}</h2>
+                <div class="col-11 col-sm-10 col-md-11 col-lg-11">
+
+
+                    <p class="ml-3">Vabljeni k komentiranju restavracije {{ restaurantName }}!</p>
+                </div>
+
+
+                {{#each comments as |comment|}}
+                    <div class="row mt-3 mb-3" id = "komentar">
+                        <div class="card col-10 offset-1 col-md-8 offset-md-2">
+                            <p id="{{comment._id}}rating" class="rs-rating"></p>
+                            <script type="text/javascript">
+                                var result = "";
+                                var star = "<span class=\"fa fa-star draw-star\"></span>";
+                                var noStar = "<span class=\"fa fa-star\"></span>";
+                                var rate = Math.floor({{comment.rating}});
+                                for (let i = 0; i < rate; i++) {
+                                    result += star;
+                                }
+                                for (let i = rate; i < 5; i++) {
+                                    result += noStar;
+                                }
+                                document.getElementById("{{comment._id}}rating").innerHTML = result;
+                            </script>
+                            <div class="row">
+                                <form id={{comment._id}} hidden>
+                                    <input type="hidden" value={{comment._id}} name="komentarID">
+                                    <input type="hidden" name = "author" id = "author" value={{ comment.author }}>
+                                    <input type="hidden" value="/commentPage/{{comment.restaurant}}" name="returnADR">
+                                </form>
+                                <div id="wrapperDivForMe" class="col-md-12" style="word-wrap: break-word;"><p class="card-text m-4">{{comment.comment}}</p></div>
+                            </div>
+
+
+                            <div class="row justify-content-end">
+
+                                <p class="card-text text-secondary mr-3 mt-3">{{comment.date}} {{comment.time}} - {{comment.author.name}} {{comment.author.surname}}</p>
+
+                                <div class="dropdown show m-2">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Več
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                        <button class="dropdown-item btn-danger" type="button" data-toggle="modal" data-target="#{{ changeModal comment._id }}" data-whatever="@mdo">Uredi</button>
+                                        <button class="dropdown-item btn-danger" type="submit" formmethod="post" formaction="/api/comments/delete" form={{ comment._id }}>Izbriši</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id={{ changeModal comment._id }} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Spremeni komentar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" id="{{ changeID comment._id }}" action="/api/comments/update">
+                                        <input type="hidden" value={{ comment._id }} name="komentarID">
+                                        <input type="hidden" name = "author" id = "author" value={{ comment.author }}>
+                                        <input type="hidden" value="testZaUredboForme" name="test">
+                                        <input type="hidden" value="/commentPage/{{comment.restaurant}}" name="returnADR">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="newCommentText" required="required" id="newCommentText" placeholder="Piši sem !" autofocus>{{comment.comment}}</textarea>
+                                        </div>
+
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="submit" form={{ changeID comment._id }} class="btn btn-primary" >Spremeni</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {{/each}}
+
+
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-10 offset-1 col-md-8 offset-md-2">
+                        <div class="row justify-content-end">
+                            <div class="btn-group dropright m-1">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Nov komentar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Odgovori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="myform" method="POST" action="/api/comments">
+                    <input type="hidden" id = "author" value="{{userID}}" name="author">
+                    <div class="form-group">
+                        <textarea class="form-control" name="newCommentText" required="required" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="myform" class="btn btn-primary" >Objavi odgovor</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Objavi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="myform1">
+                    <input type="hidden" id = "author" value="{{userID}}" name="author">
+                    <input type="hidden" id = "restaurant" value="{{restaurantID}}" name="restaurant">
+                    <div class="form-group">
+                        <h6>Oceni restavracijo:</h6>
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="star5">5 <span class="fa fa-star draw-star"></span></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="star4">4 <span class="fa fa-star draw-star"></span></label>
+                        <input type="radio" id="star3" name="rating" value="3" checked/><label for="star3" title="star3">3 <span class="fa fa-star draw-star"></span></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="star2">2 <span class="fa fa-star draw-star"></span></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="star1">1 <span class="fa fa-star draw-star"></span></label>
+                        <textarea class="form-control" name="newCommentText" required="required" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" formmethod="post" formaction="/api/comments" form="myform1">Objavi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>-->
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<!--<script src="javascripts/popper.min.js"></script>-->
+<!--<script src="javascripts/bootstrap.min.js"></script>-->
+
+
+<script src="../javascripts/commentSuport.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+</body>
+</html>

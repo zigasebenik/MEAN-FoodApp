@@ -1,0 +1,90 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+
+    <!--            User panel (left size)      -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel" id = "userPanel">
+
+
+      <div class="row" style = "margin-top: 20px;">
+
+        <!--                    Switch to admin view (only if user is admin)-->
+        <div class = col>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="adminPageView" (click)="redirect('/admin/locations')">
+            <label *ngIf="autenticate.isAdmin()" class="custom-control-label" style = "color:white" for="adminPageView" (click)="redirect('/admin/locations')">Administratorski pogled</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col" style="margin-top: 20px;">
+          <div style="text-align: center;">
+            <img src="/assets/images/profile/user_avatar.png" class="avatar" />
+          </div>
+        </div>
+      </div>
+
+      <div class = "dataUnit">
+        <div class="row">
+          <div id = "nameSurname" class = "col">
+            {{user?.name}} {{user?.surname}}
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col infoText">
+            ime in priimek
+          </div>
+        </div>
+      </div>
+
+      <div class = "dataUnit" style = "margin-bottom: 10px; font-size: 15px;">
+        <div class = "row">
+          <div id = "email" class = "col">
+            {{user?.email}}
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col infoText">
+            email
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!--            User activities - double click to show more info in new panel    -->
+    <div class = "col userActivities">
+      <h3 style = "margin-bottom: 25px">Zadnje uporabnikove aktivnosti</h3>
+
+      <div class = "row">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
+          <thead>
+          <tr>
+            <th scope="col" style="word-wrap: break-word">Datum</th>
+            <th scope="col" style="word-wrap: break-word">Komentar</th>
+            <th scope="col" style="word-wrap: break-word">Lokacija</th>
+            <th scope="col" style="word-wrap: break-word">Izbriši komentar</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr mdbTableCol *ngFor="let el of activities">
+            <td style="word-wrap: break-word">{{el.date | date:'dd.MM.yyyy'}}</td>
+            <td style="word-wrap: break-word">{{el.comment}}</td>
+            <td style="word-wrap: break-word">{{el.restaurant.name}}</td>
+            <td>
+                <button id="delete" class="btn btn-link" (click)="deleteComment(el)">
+                  <i style="color: darkred" class="fas fa-trash"></i>
+                </button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

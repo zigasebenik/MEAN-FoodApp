@@ -1,0 +1,11 @@
+http://localhost:8081/
+http://localhost:8081/restaurant-list/
+http://localhost:8081/restaurant-add/
+http://localhost:8081/login/
+http://localhost:8081/register/
+http://localhost:8081/profile/
+http://localhost:8081/admin/locations/
+http://localhost:8081/admin/comments/
+http://localhost:8081/admin/users/
+http://localhost:8081/admin/analytics/
+http://localhost:8081/logout/

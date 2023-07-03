@@ -1,0 +1,44 @@
+  <div class="row" style = "margin-top: 20px;">
+
+    <!--                    Switch to admin view (only if user is admin)-->
+    <div class = col>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="adminPageView" checked (click)="redirect('/profile')">
+        <label class="custom-control-label" style = "color:white" for="adminPageView" (click)="redirect('/profile')">Administratorski pogled</label>
+      </div>
+    </div>
+  </div>
+
+  <div class = "dataUnit" style="text-align: center; margin-top: 40px; margin-bottom: 40px">
+    <h3>Admin Dashboard</h3>
+    <hr style="border-color: white">
+
+  </div>
+
+  <div class = categoryName style = "margin-left: 25px; margin-bottom: 20px; margin-top: 40px">
+    Komponente sistema
+
+  </div>
+
+  <div class = "dataUnit" style = "margin-bottom: 10px">
+
+    <div class="row tab">
+      <button type="button" class="btn btn-lg menuElement" id = "comments" (click)="redirect('/admin/comments')" >Komentarji</button>
+    </div>
+
+    <div class="row tab">
+      <button type="button" class="btn btn-lg menuElement" id = "locations" (click)="redirect('/admin/locations')">Lokacije</button>
+    </div>
+
+    <div class="row tab">
+      <button type="button" class="btn btn-lg menuElement" id = "addLocation" style = "margin-left: 20px" (click)="redirect('/restaurant-add')" >Dodaj lokacijo</button>
+    </div>
+
+    <div class="row tab">
+      <button type="button" class="btn btn-lg menuElement" id = "users" (click)="redirect('/admin/users')">Uporabniki</button>
+    </div>
+
+    <div class="row tab">
+      <button type="button" class="btn btn-lg menuElement" id = "analytics" (click)="redirect('/admin/analytics')">Analitika</button>
+    </div>
+  </div>

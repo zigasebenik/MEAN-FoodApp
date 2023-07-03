@@ -1,0 +1,145 @@
+
+
+
+<div class="container mb-5" >
+
+  <div class="card mt-5" *ngIf="restavracija">
+
+
+
+    <div class="row">
+      <div class="col-12 mt-3" >
+
+        <h2 class="card-title h2 text-center">Komentarji - {{ restavracija.name }}</h2>
+        <div class="col-11 col-sm-10 col-md-11 col-lg-11">
+
+
+          <p class="ml-3">Vabljeni k komentiranju restavracije {{ restavracija.name }}!</p>
+
+
+
+
+        </div>
+
+
+        <div *ngIf="komentarji == undefined" class="alert alert-info" role="alert">
+          <p> No comments yet :) </p>
+        </div>
+
+
+
+
+        <div *ngIf="komentarji && komentarji.length > 0" >
+
+          <app-comment *ngFor="let komentar of komentarji" [user] = "user"  [komentar]="komentar"></app-comment>
+
+        </div>
+
+
+
+
+
+        <div class="row mt-3 mb-3">
+          <div class="col-10 offset-1 col-md-8 offset-md-2">
+            <div class="row justify-content-end">
+              <div class="btn-group dropright m-1">
+
+                <div id="add-comment-button" *ngIf="authenticate.isLoggedIn()">
+                  <app-modal-component
+                  naslov="Nov komentar"
+                  buttonDescription="Nov komentar"
+                  closeButton="Objavi"
+
+                  [restaurantPathID]="restaurantPathID"
+                  [user]="user"
+
+                  (formSubmitEvent)='dodajNovKomentar($event)'>
+
+                </app-modal-component>
+                </div>
+                  <!--[restaurantPathID]="restaurantPathID"
+                  [user]="users[0]"-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--
+
+          <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Objavi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+
+                <form (ngSubmit)="dodajNovKomentar($event)" [attr.id]="'myform1'">
+                  <input *ngIf="users && users.length > 0" type="hidden" id = "author" [ngModel]="formaPodatkiKomentar.author" value="{{users[0]._id}}" name="author">
+                  <input type="hidden" id = "restaurant" [ngModel]="formaPodatkiKomentar.restaurant" value="{{restaurantPathID}}" name="restaurant">
+                  <div class="form-group">
+                    <h6>Oceni restavracijo:</h6>
+
+                    <select [(ngModel)]="formaPodatkiKomentar.rating" id="ocena" name="ocena" class="form-control form-control-sm mb-3">
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="4">4</option>
+                      <option [ngValue]="3">3</option>
+                      <option [ngValue]="2">2</option>
+                      <option [ngValue]="1">1</option>
+                    </select>
+
+                    <textarea [ngModel]="formaPodatkiKomentar.newCommentText" class="form-control" id="newCommentText" name="newCommentText" required="required" placeholder="Piši sem !"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button [attr.type]="'submit'" class="btn btn-primary" [attr.form]="'myform1'">Objavi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        -->
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="komentarji && numberOfComments > 10">
+    <div class="row mt-4 justify-content-md-center" >
+
+      <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="numberOfComments"
+        [directionLinks]="false" (pageChange)="loadNewPage($event)"
+      >
+      </ngb-pagination>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>-->
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<!--<script src="javascripts/popper.min.js"></script>-->
+<!--<script src="javascripts/bootstrap.min.js"></script>-->
+
+
+<!--<script src="./assets/javascripts/commentSuport.js"></script>-->
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->

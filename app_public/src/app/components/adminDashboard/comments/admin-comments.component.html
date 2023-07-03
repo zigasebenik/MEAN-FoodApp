@@ -1,0 +1,102 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+
+    <!--            User panel (left size)      -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
+      <app-admin-panel></app-admin-panel>
+    </div>
+
+    <!--            User activities - double click to show more info in new panel    -->
+    <div class = "col userActivities">
+
+      <div class = "row">
+        <div class = "col">
+          <h3 style = "margin-bottom: 30px">Komentarji</h3>
+        </div>
+        <!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+        <!--                    <div class="input-group mb-2">-->
+        <!--                        <div class="input-group-prepend">-->
+        <!--                            <div class="input-group-text">-->
+        <!--                                <i class="fas fa-search"></i>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+      </div>
+
+      <div class = "row">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Komentar</th>
+            <th scope="col">Lokacija</th>
+            <th scope="col">Uporabnik</th>
+            <th scope="col">Izbriši</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let comment of comments">
+            <th scope="row" style="word-wrap: break-word">{{comment._id}}</th>
+            <td style="word-wrap: break-word">{{comment.date | date: 'dd.MM.yyy'}}</td>
+            <td style="word-wrap: break-word">{{comment.comment}}</td>
+            <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
+            <td style="word-wrap: break-word">{{comment.author.name}} {{comment.author.surname}}</td>
+            <td style="word-wrap: break-word">
+              <form method="post" id = "{{ comment._id}}" action = "/api/restaurants/delete">
+                <input type = "hidden" name="restaurantID" value="{{comment._id}}">
+                <input type="hidden" value="/admin-locations" name="returnADR">
+                <button class="btn btn-link" (click)="deleteComment(comment)">
+                  <i style="color: darkred" class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          <!--          &lt;!&ndash;    Modal for showing correction details&ndash;&gt;-->
+          <!--          <div class="modal fade" id = "{{ comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">-->
+          <!--            <div class="modal-dialog" role="document">-->
+          <!--              <div class="modal-content">-->
+          <!--                <div class="modal-header">-->
+          <!--                  <h5 class="modal-title">Podrobnosti elementa</h5>-->
+          <!--                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--                    <span aria-hidden="true">&times;</span>-->
+          <!--                  </button>-->
+          <!--                </div>-->
+          <!--                <div class = "modal-body">-->
+          <!--                  <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant.name}}</i></h6>-->
+
+          <!--                  <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">-->
+          <!--                    <input type = hidden name="komentarID" value="{{comment._id}}">-->
+          <!--                    <input type="hidden" value="/admin-comments" name="returnADR">-->
+          <!--                    <input type="hidden" value="{{comment.author._id}}" name = "author">-->
+          <!--                    <div class="form-group">-->
+          <!--                      <label for="user">Uporabnik</label>-->
+          <!--                      <input type="text" class="form-control" id="user" value="{{comment.author.name}} {{comment.author.surname}}" readonly>-->
+          <!--                    </div>-->
+
+          <!--                    <div class = "form-group">-->
+          <!--                      <label for = "corretionDescription">Komentar</label>-->
+          <!--                      <textarea class="form-control" name = "newCommentText" required="required" rows = "5">{{comment.comment}}</textarea>-->
+          <!--                    </div>-->
+
+          <!--                    <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>-->
+          <!--                    <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment._id}}">Izbriši</button>-->
+          <!--                  </form>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

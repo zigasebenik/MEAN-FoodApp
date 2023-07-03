@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/RestaurantView.css">
+    <title>{{title}}</title>
+</head>
+<body>
+
+<main role="main">
+    <div class="container-fluid" style="background-color: white; overflow: hidden">
+        <div class="row" style="height: 350px">
+            <div id="welcome" class="mx-auto col-sm-6 align-self-center">
+                <h1 class="welcome-header">DOBRODOŠLI NA FRIFood</h1>
+                <p class="welcome-subscript">Kje boste pa vi jedli danes?</p>
+                <form action="/restaurant-list"><button id="welcome-search-button" class="btn btn-primary">POIŠČITE</button></form>
+            </div>
+            <div class="col-sm-4 align-self-center d-none d-sm-block">
+<!--                <img src="/images/bg.png" width="200" height="200"/>-->
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center" style="background-color: #cbdcff; height: 200px">
+            <div id="catchphrase" class="mx-auto col-sm-6 align-self-center">
+                <h1 class="catchphrase-text">VAŠE NAJLJUBŠE RESTAVRACIJE NA ENEM MESTU</h1>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center" style="height: 150px">
+            <div id="storitve-text" class="mx-auto col-sm-6 align-self-center">
+                <h3 class="storitve-text-header">NAŠE STORITVE</h3>
+                <p class="storitve-text-subscript">Ponujamo vam več.</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-around">
+            <div class="storitve-restavracije col-sm-12 col-md-2 col-lg-2" style="text-align: center">
+                <h3>RESTAVRACIJE</h3>
+                <p class="storitve-restavracije-text">Ponujamo vam kolekcijo čudovitih restavracij blizu vas!</p>
+            </div>
+            <div class="storitve-menuji col-sm-12 col-md-2 col-lg-2" style="text-align: center">
+                <h3>MENUJI</h3>
+                <p class="storitve-menuji-text">Preglejte ponudbo vaših najljubših restavracij, vse na enem mestu!</p>
+            </div>
+            <div class="storitve-lokacije col-sm-12 col-md-2 col-lg-2" style="text-align: center">
+                <h3>LOKACIJE</h3>
+                <p class="storitve-lokacije-text">Kjerkoli ste, vedno imamo nekaj za vas. </br> Poglejte, kaj vam je blizu!</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="javascripts/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<h5>Podatki o uporabniku: {{user?.name}} {{user?.surname}}</h5>
+
+<form method="post" id = "{{user?._id}}" action = "api/users">
+  <input type="hidden" name = "returnADR" value="/admin-users">
+  <input type="hidden" name = "userID" value="{{user?._id}}">
+  <div class="form-group">
+    <label for="userId">Uporabnik</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" id="userID" name="userID" value="{{user._id}}" disabled>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Ime in priimek</label>
+    <div class="row">
+      <div class="col-md-6">
+        <input [(ngModel)]="user.name" type="text" class="form-control" id="name" name="name" pattern="^[a-zA-Z\s]*$" required="required" >
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="surname" name="surname" pattern="^[a-zA-Z\s]*$" required="required" [(ngModel)]="user.surname">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mail">Email</label>
+    <input type="email" class="form-control" id="mail" name = "email" required="required" [(ngModel)]="user.email">
+  </div>
+
+    <div class="form-group">
+      <label for="type">Vrsta uporabnika:</label>
+      <select id="type" class="form-control">
+        <option selected>{{selected}}</option>
+        <option>{{notSelected}}</option>
+      </select>
+    </div>
+
+  <button class="btn btn-success" (click) = "updateUser()">
+    Posodobi
+  </button>
+
+  <!--          <button class="btn btn-success" type="submit" form = {{user._id}} >Posodobi</button>-->
+
+  <p>{{opozorilo}}</p>
+
+</form>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/restaurant-list.css">
+    <!-- STARS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column col-md-6">
+                <div class="row">
+                    <div class="col-md-1 col-sm-0 col-xs-0"></div>
+                    <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
+                        <!-- Each restaurant loaded is shown here -->
+                        <div class="row-fill"><form action="/restaurant-list"><button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button></form></div>
+                        <div id="showHideRestaurants">
+                            {{#each restaurants as |restaurant| }}
+                                <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <h1>{{restaurant.name}}</h1>
+                                            <p>{{restaurant.address}}</p>
+                                            <p id="{{restaurant._id}}" class="rs-rating"></p>
+                                            <script type="text/javascript">
+                                                var result = "";
+                                                var star = "<span class=\"fa fa-star draw-star\"></span>";
+                                                var noStar = "<span class=\"fa fa-star\"></span>";
+                                                var rate = Math.round({{restaurant.rating}});
+                                                for (let i = 0; i < rate; i++) {
+                                                    result += star;
+                                                }
+                                                for (let i = rate; i < 5; i++) {
+                                                    result += noStar;
+                                                }
+                                                document.getElementById("{{restaurant._id}}").innerHTML = result;
+                                            </script>
+                                            <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
+                                            {{#if restaurant.student}}
+                                                <p>Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
+                                            {{/if}}
+                                            <p>
+                                                {{makeLink2 "Več o restavraciji" "/restaurantView/" restaurant._id}}
+                                            </p>
+                                            <p>
+                                                {{makeLink2 "Oceni in komentiraj" "/commentPage/" restaurant._id }}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    {{#if restaurant.student }}
+                                                        <img class="rs-image-logo" src="/images/student/boni.png" alt="Boni so">
+                                                    {{else}}
+                                                        <img class="rs-image-logo" src="/images/student/boni_ne.png" alt="Boni niso">
+                                                    {{/if}}
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4"></div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <img class="rs-image-logo" src="{{restaurant.icon}}" alt="Ikona">
+                                                </div>
+                                            </div>
+                                            <div class="row rs-image-row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <img class="img-fluid rs-image" src="{{restaurant.front}}" alt="Naslovna slika">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row-fill"></div>
+                            {{/each}}
+                        </div>
+                        <div id="showHideFoundRestaurants" >
+                        </div>
+
+                    </div>
+                    <div class="col-md-1 col-sm-0 col-xs-0"></div>
+                </div>
+            </div>
+            <div class="google-maps col-md-6 col-sm-0 col-xs-0">
+                <div id="rs-map-container-fluid" class="z-depth-1-half rs-map-container">
+                    <div id="googleMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbr15R9FU8TSuU5cRiUgrXaC5h1Dd6zmA&libraries=places&callback=initMap"></script>
+    <script src="javascripts/restaurant-list-helper.js"></script>
+<!--    <script src="javascripts/popper.min.js"></script>-->
+<!--    <script src="javascripts/bootstrap.min.js"></script>-->
+<!--    <script src="javascripts/jquery-3.4.1.min.js"></script>-->
+</body>
+
+</html>

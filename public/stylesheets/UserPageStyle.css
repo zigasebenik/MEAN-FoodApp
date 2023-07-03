@@ -1,0 +1,55 @@
+@import "./custom.css";
+@import "./StyleSheet.css";
+
+.dataUnit {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: white;
+    font-size: 18px;
+}
+.infoText {
+    font-size: 12px;
+}
+.userPanel {
+    background: var(--darkBlue);
+    padding-bottom: 50px;
+}
+html,body {
+    height: 100%;
+}
+.rightAlign {
+    text-align: right;
+}
+.categoryName {
+    font-size: 20px;
+    color: white;
+}
+
+.avatar{
+    height: 200px;
+    width: 200px;
+    background: var(--lightGrey);
+    border-radius: 50%;
+}
+
+.userActivities {
+    margin-top: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 30px;
+}
+
+.tableActivities {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 20px
+}
+
+.tableElement {
+    margin: 5px;
+}
+
+.hr {
+    color: white;
+}

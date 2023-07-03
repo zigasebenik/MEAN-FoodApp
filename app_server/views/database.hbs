@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <input type="button" id="dropButton" value="Drop Database" onclick="dropDatabase('THIS_IS_VALIDATION_KEY'); dropText()" />
+            <input type="button" id="fillButton" value="Add Initial Data" onclick="dropDatabase('THIS_IS_VALIDATION_KEY'); fillDatabase('THIS_IS_VALIDATION_KEY'); fillText()" />
+        </div>
+        <div class="row" id="konzola"></div>
+        <input type="button" id="ApiCallsButton" value="Get API Calls" onclick="fillAPIText()" />
+    </div>
+</body>
+<script src="javascripts/database-helper.js"></script>
+</html>

@@ -1,0 +1,87 @@
+.rs-map-container{
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    width: 100%;
+    overflow:hidden;
+    position:relative;
+    padding-top: 5vh;
+}
+
+.rs-map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:relative;
+}
+
+.restaurant-list-scrollable{
+    height:100vh;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #CBDCFF;
+    border-radius: 5px;
+}
+
+.restaurant {
+    height: auto;
+    width: auto;
+    background-color: #CBDCFF;
+    outline: 0;
+}
+.restaurant:focus {
+    background-color: #adc8ff;
+    border-radius: 5px;
+}
+.rs-image {
+    width: 30vh;
+    border-radius: 5px;
+}
+.rs-image-row {
+    padding-right: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.rs-image-logo {
+    width: 5vh;
+}
+.logo-row {
+    height: 8vh;
+}
+.row-fill {
+    padding-top: 1vh;
+}
+a:link {
+    color: #7395AE;
+}
+a:visited {
+    color: darkBlue;
+}
+a:hover {
+    color: #5D5C61;
+}
+#googleMap {
+    height:100%;
+    width:100%;
+}
+/* CUSTOM SCROLL BAR - Does not work on Firefox */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #7395AE;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #5D5C61;
+}
+
+.draw-star {
+    color: orange;
+}

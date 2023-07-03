@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nadzorna plošča administrator</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="/stylesheets/AdminDashboard.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+
+        <!--            User panel (left size)      -->
+        {{> adminPanel }}
+
+
+        <!--            User activities - double click to show more info in new panel    -->
+        <div class = "col userActivities">
+
+            <div class="row">
+
+                <div class="col-12 col-md-4">
+                    <div class="card waitingListCard">
+                        <h3 class="card-title">18</h3>
+                        <p style="text-align: right">
+                            Čakalna vrsta
+                        </p>
+
+                        <a href="/admin-waitinglist" class="stretched-link"></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card usersCard">
+                        <h3 class="card-title">37</h3>
+                        <p style="text-align: right">
+                            Uporabniki
+                        </p>
+
+                        <a href="/admin-users" class="stretched-link"></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card locationsCard">
+                        <h3 class="card-title">102</h3>
+                        <p style="text-align: right">
+                            Lokacije
+                        </p>
+
+                        <a href="/admin-locations" class="stretched-link"></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class = "row" style = "margin-bottom: 30px; margin-top: 50px">
+                <div class = "col">
+                    <h3>Zadnje aktivnosti</h3>
+                </div>
+<!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+<!--                    <div class="input-group mb-2">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fas fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+
+            <div class = "list-group tableActivities">
+
+                <!--                    Example of published comment        -->
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-success">
+                    <div class = "container-fluid tableElement">
+                        <div class = row>
+                            <div class = "col-4 col-md-1">
+                                13.10
+                            </div>
+                            <div class = "col-8 col-md-3">
+                                FRI 123 Menza
+                            </div>
+                            <div class="col-12 col-md-6">
+                                Hrana bi lahko bila boljša, osebje odlično
+                            </div>
+                            <div class="col-6 col-md-2">
+                                Komentar
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!--                    Example of published rating     -->
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action">
+                    <div class = "container-fluid tableElement">
+                        <div class = row>
+                            <div class = "col-4 col-md-1">
+                                13.10
+                            </div>
+                            <div class = "col-8 col-md-3">
+                                FRI 123 Menza
+                            </div>
+                            <div class="col-12 col-md-6">
+
+                                <form class="rating">
+                                    <label>
+                                        <input type="radio" name="stars" value="1" />
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="2" />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="3" />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="4" />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="5" />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+
+                                </form>
+
+                            </div>
+                            <div class="col-6 col-md-2">
+                                Ocena
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!--                    Example of changed data that is currently processed by admin team-->
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-warning">
+                    <div class = "container-fluid tableElement">
+                        <div class = row>
+                            <div class = "col-4 col-md-1">
+                                13.10
+                            </div>
+                            <div class = "col-8 col-md-3">
+                                FRI 123 Menza
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <i>Spremenjen delovni čas</i>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                Popravek <i>(v obdelavi)</i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!--                    Example of changed data that was refused by admin team-->
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-danger">
+                    <div class = "container-fluid tableElement">
+                        <div class = row>
+                            <div class = "col-4 col-md-1">
+                                13.10
+                            </div>
+                            <div class = "col-8 col-md-3">
+                                FRI 123 Menza
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <i>Spremenjen naslov - neveljaven naslov</i>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                Popravek <i>(zavrnjen)</i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--    Modal for showing correction details-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="detailView">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "modal-body">
+                <h6 style = "margin-bottom: 25px"><i>4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                <form>
+
+                    <div class="form-group">
+                        <label for="user">Uporabnik</label>
+                        <input type="text" class="form-control" id="user" value="JakMar17" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status objave</label>
+                        <select class="form-control" id="status">
+                            <option>Objavljeno</option>
+                            <option>V obdelavi</option>
+                            <option>Zavrnjeno</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correctionType">Vrsta popravka</label>
+                        <input type="text" class="form-control" id="correctionType" value="Lokacija">
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "corretionDescription">Opis popravka</label>
+                        <textarea class="form-control" id = "corretionDescription" rows = "5">Večna pot 112</textarea>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "adminComment">Opomba administratorja</label>
+                        <textarea class="form-control" id = "adminComment" rows = "5"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal">Posodobi</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</body>
+
+</html>

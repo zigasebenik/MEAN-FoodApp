@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "emitDecoratorMetadata": true,
+    "types": [
+      "jasmine",
+      "node",
+      "googlemaps"
+    ]
+  },
+  "files": [
+    "test.ts",
+    "polyfills.ts",
+    "admin-panel.component"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

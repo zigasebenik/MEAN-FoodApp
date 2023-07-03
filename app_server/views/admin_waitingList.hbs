@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Čakalna vrsta</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="/stylesheets/AdminDashboard.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+
+        <!--            User panel (left size)      -->
+        {{> adminPanel}}
+
+        <!--            User activities - double click to show more info in new panel    -->
+        <div class = "col userActivities">
+
+            <div class = "row">
+                <div class = "col">
+                    <h3 style = "margin-bottom: 30px">Čakalna vrsta</h3>
+                </div>
+<!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+<!--                    <div class="input-group mb-2">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fas fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+
+            </div>
+
+            <div class = "row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#id</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Vrsta</th>
+                        <th scope="col">Lokacija</th>
+                        <th scope="col">Uporabnik</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>12.10</td>
+                        <td>Sprememba urnika</td>
+                        <td>FRI123</td>
+                        <td>JakMar17</td>
+                        <td>
+                            <a href = "#" data-toggle="modal" data-target="#detailView">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>12.10</td>
+                        <td>Sprememba lokacije</td>
+                        <td>FRI123</td>
+                        <td>JakMar17</td>
+                        <td>
+                            <a href = "#" data-toggle="modal" data-target="#detailView">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>12.10</td>
+                        <td>Dodana nova lokacija</td>
+                        <td>FKKT123</td>
+                        <td>JakMar17</td>
+                        <td>
+                            <a href = "#" data-toggle="modal" data-target="#detailView">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>12.10</td>
+                        <td>Sprememba cenika</td>
+                        <td>FRI123</td>
+                        <td>JakMar17</td>
+                        <td>
+                            <a href = "#" data-toggle="modal" data-target="#detailView">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--    Modal for showing correction details-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="detailView">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Podrobnosti elementa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "modal-body">
+                <h6 style = "margin-bottom: 25px"><i>4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                <form>
+
+                    <div class="form-group">
+                        <label for="user">Uporabnik</label>
+                        <input type="text" class="form-control" id="user" value="JakMar17" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correctionType">Vrsta popravka</label>
+                        <input type="text" class="form-control" id="correctionType" value="Lokacija">
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "corretionDescription">Opis popravka</label>
+                        <textarea class="form-control" id = "corretionDescription" rows = "5">Večna pot 112</textarea>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "adminComment">Opomba administratorja</label>
+                        <textarea class="form-control" id = "adminComment" rows = "5"></textarea>
+                    </div>
+
+                    <button class="btn btn-success" type="submit" data-dismiss="modal">Sprejmi</button>
+                    <button class="btn btn-danger" type="submit" data-dismiss="modal">Zavrni</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</body>
+
+</html>

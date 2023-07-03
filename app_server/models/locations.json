@@ -1,0 +1,28 @@
+{
+  "title": "Locations",
+  "locations": [
+    {
+      "locationId": "1",
+      "locationName": "FRI 123",
+      "address": "Večna pot 113, 1000 Ljubljana",
+      "noOfComments": "12",
+      "rate": "3.4",
+      "status": "published"
+    },
+    {
+      "locationId": "2",
+      "locationName": "FKKT 123",
+      "noOfComments": "5",
+      "rate": "2.44",
+      "status": "published"
+    },
+    {
+      "locationId": "3",
+      "locationName": "Lavbi",
+      "noOfComments": "2",
+      "rate": "5",
+      "status": "deleted",
+      "address": "Lavbi 1, 9000 Takle mamo"
+    }
+  ]
+}

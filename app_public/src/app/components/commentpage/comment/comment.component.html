@@ -1,0 +1,82 @@
+<div *ngIf="komentar">
+
+  <div class="row mt-3 mb-3" id = "komentar">
+    <div class="card col-10 offset-1 col-md-8 offset-md-2">
+
+      <div class="row">
+        <div id="wrapperDivForMe" class="col-md-12" style="word-wrap: break-word;"><p class="card-text m-4">{{komentar.comment}}</p></div>
+      </div>
+
+
+      <div class="row justify-content-end" >
+
+        <p class="card-text text-secondary mr-3 mt-3"><app-zvezdice [ocena]="komentar.rating"></app-zvezdice> - {{komentar.date | getDateFromDBFormat}} - {{komentar.date | getTimeFromDBFormat}} - {{komentar.name}} {{komentar.surname}}</p>
+
+        <div class="dropdown show m-2" *ngIf="canChange">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Več
+          </a>
+<!--[attr.data-target]="'#'+komentar._id+'modalZaKomentar'" data-whatever="@mdo"-->
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div >
+              <app-modal-component
+                naslov="Uredi komentar"
+                buttonDescription="Spremeni"
+                closeButton="Objavi"
+                [valueForTextArea]="komentar.comment"
+
+                [openButonClass] = "'dropdown-item btn-danger'"
+
+                [restaurantPathID]="komentar.restaurant"
+                [user]="komentar.author._id"
+
+                (formSubmitEvent)='updateComment($event)'>
+
+              </app-modal-component>
+            </div>
+            <button class="dropdown-item btn-danger" (click)="deleteComment()" >Izbriši</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Spremeni komentar</h5>
+      <button type="button" class="close" [autofocus]="false" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+
+      <div *ngIf="obrazecNapaka" class="alert alert-danger" role="alert">
+        {{ obrazecNapaka }}
+      </div>
+
+
+
+      <form method="POST" [attr.id]="'modalKomentarForma'+komentar._id" action="/api/comments/update">
+        <div class="form-group">
+          <textarea class="form-control" ngbAutofocus  name="newCommentText" required="required" [attr.id]="komentar._id+'textKometarja'" placeholder="Piši sem !" [autofocus]>{{komentar.comment}}</textarea>
+        </div>
+
+      </form>
+      <div class="modal-footer">
+        <button type="submit" [attr.form]="'modalKomentarForma'+komentar._id" class="btn btn-primary" (click)="updateComment()">Spremeni</button>
+      </div>
+
+    </div>
+  </ng-template>
+-->
+
+
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

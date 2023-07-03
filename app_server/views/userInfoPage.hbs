@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pregled uporabnika</title>
+
+    <link href="/stylesheets/UserPageStyle.css" rel="stylesheet" type="text/css"/>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+
+            <!--            User panel (left size)      -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel" id = "userPanel">
+
+
+                <div class="row" style = "margin-top: 20px;">
+
+                    <!--                    Switch to admin view (only if user is admin)-->
+                    <div class = col>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="adminPageView" onclick = "location.href = '/admin-locations'">
+                            <label class="custom-control-label" style = "color:white" for="adminPageView" onclick = "location.href = '/admin-locations'">Administratorski pogled</label>
+                        </div>
+                    </div>
+
+                    <!--                TO-DO: on click open setting panel to change user info-->
+<!--                    <div class="col rightAlign">-->
+<!--                        <i class="fas fa-cog" style = "font-size: 200%; color: white" onclick= "location.href = '/userSetting' "></i>-->
+<!--                    </div>-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col" style="margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <img src="/images/profile/user_avatar.png" class="avatar" />
+
+<!--                            <div class = categoryName style = "margin-bottom: 50px">-->
+<!--                                <div class = row>-->
+<!--                                    <div id = "username" class = col>-->
+<!--                                        JakMar17-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "dataUnit">
+                    <div class="row">
+                        <div id = "nameSurname" class = "col">
+                            {{user.name}} {{user.surname}}
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col infoText">
+                            ime in priimek
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "dataUnit" style = "margin-bottom: 10px">
+                    <div class = "row">
+                        <div id = "email" class = "col">
+                            {{user.email}}
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class="col infoText">
+                            email
+                        </div>
+                    </div>
+                </div>
+
+<!--                <div class = categoryName style = "margin-left: 25px; margin-bottom: 20px; margin-top: 40px">-->
+<!--                    Uporabnikova statistika-->
+<!--                </div>-->
+
+<!--                <div class = dataUnit>-->
+<!--                    <div class = row>-->
+<!--                        <div id = "userComments" class = col>-->
+<!--                            {{user.addedComments}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class = row>-->
+<!--                        <div class = "col infoText">-->
+<!--                            Dodanih komentarjev-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class = dataUnit>-->
+<!--                    <div class = row>-->
+<!--                        <div id = "userRatings" class = col>-->
+<!--                            {{user.addedRevies}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class = row>-->
+<!--                        <div class = "col infoText">-->
+<!--                            Dodanih ocen-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class = dataUnit>-->
+<!--                    <div class = row>-->
+<!--                        <div id = "userAddedData" class = col>-->
+<!--                            {{addedData}} <i>({{dataInReview}})</i>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class = row>-->
+<!--                        <div class = "col infoText">-->
+<!--                            Dodanih podatkov <i>(v obdelavi)</i>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+            </div>
+
+            {{> UserActivities}}
+
+        </div>
+    </div>
+
+    <script src="javascripts/popper.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

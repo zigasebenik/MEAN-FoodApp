@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ naslov }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="errorString" class="alert alert-danger" role="alert">
+      {{ errorString }}
+    </div>
+
+    <form (ngSubmit)="submitForm(content)" [attr.id]="'myform1'">
+      <input *ngIf="user != undefined" type="hidden" id = "author" [ngModel]="formData.author" value="{{user._id}}" name="author">
+      <input *ngIf="restaurantPathID != undefined" type="hidden" id = "restaurant" [ngModel]="formData.restaurant" value="{{restaurantPathID}}" name="restaurant">
+      <div class="form-group">
+
+
+        <div *ngIf="restaurantPathID!= undefined && user != undefined">
+          <h6>Oceni restavracijo:</h6>
+          <select [(ngModel)]="formData.rating" id="ocena" name="ocena" class="form-control form-control-sm mb-3">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="4">4</option>
+            <option [ngValue]="3">3</option>
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="1">1</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="restaurantPathID!= undefined && user != undefined">
+          <textarea [ngModel]="formData.newCommentText" class="form-control" id="newCommentText" name="newCommentText" required="required">{{formData.newCommentText}}</textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button [attr.type]="'submit'" ngbAutofocus  class="btn btn-primary" [attr.form]="'myform1'">{{ closeButton }}</button>
+  </div>
+</ng-template>
+
+
+<button  *ngIf="openButonClass == '' || openButonClass == undefined"  class="btn btn-primary" (click)="open(content)">{{ buttonDescription }}</button>
+<button  *ngIf="openButonClass != '' && openButonClass != undefined"  [attr.class]="openButonClass" (click)="open(content)">{{ buttonDescription }}</button>
+

@@ -1,0 +1,247 @@
+<!--            User activities - double click to show more info in new panel    -->
+<div class = "col userActivities">
+    <h3 style = "margin-bottom: 25px">Zadnje uporabnikove aktivnosti</h3>
+
+<!--    <div class = "list-group tableActivities">-->
+
+<!--        &lt;!&ndash;                    Example of published comment        &ndash;&gt;-->
+<!--        <a href="#" data-toggle="modal" data-target="#editComment" class = "list-group-item list-group-item-action list-group-item-success">-->
+<!--            <div class = "container-fluid tableElement">-->
+<!--                <div class = row>-->
+<!--                    <div class = "col-4 col-md-1">-->
+<!--                        {{date}}-->
+<!--                    </div>-->
+<!--                    <div class = "col-8 col-md-3">-->
+<!--                        {{location}}-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6">-->
+<!--                        Hrana bi lahko bila boljša, osebje odlično-->
+<!--                    </div>-->
+<!--                    <div class="col-6 col-md-2">-->
+<!--                        Komentar-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </a>-->
+
+<!--        &lt;!&ndash;                    Example of published rating     &ndash;&gt;-->
+<!--        <a href="#" class = "list-group-item list-group-item-action">-->
+<!--            <div class = "container-fluid tableElement">-->
+<!--                <div class = row>-->
+<!--                    <div class = "col-4 col-md-1">-->
+<!--                        13.10-->
+<!--                    </div>-->
+<!--                    <div class = "col-8 col-md-3">-->
+<!--                        FRI 123 Menza-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6">-->
+
+<!--                        <form class="rating">-->
+<!--                            <label>-->
+<!--                                <input type="radio" name="stars" value="1" />-->
+<!--                                <span class="icon">★</span>-->
+<!--                            </label>-->
+<!--                            <label>-->
+<!--                                <input type="radio" name="stars" value="2" />-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                            </label>-->
+<!--                            <label>-->
+<!--                                <input type="radio" name="stars" value="3" />-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                            </label>-->
+<!--                            <label>-->
+<!--                                <input type="radio" name="stars" value="4" />-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                            </label>-->
+<!--                            <label>-->
+<!--                                <input type="radio" name="stars" value="5" />-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                                <span class="icon">★</span>-->
+<!--                            </label>-->
+
+<!--                        </form>-->
+
+<!--                    </div>-->
+<!--                    <div class="col-6 col-md-2">-->
+<!--                        Ocena-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </a>-->
+
+<!--        &lt;!&ndash;                    Example of changed data that is currently processed by admin team&ndash;&gt;-->
+<!--        <a href="#" data-toggle="modal" data-target="#showCorrection" class = "list-group-item list-group-item-action list-group-item-warning">-->
+<!--            <div class = "container-fluid tableElement">-->
+<!--                <div class = row>-->
+<!--                    <div class = "col-4 col-md-1">-->
+<!--                        13.10-->
+<!--                    </div>-->
+<!--                    <div class = "col-8 col-md-3">-->
+<!--                        FRI 123 Menza-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6">-->
+<!--                        <i>Spremenjen delovni čas</i>-->
+<!--                    </div>-->
+<!--                    <div class="col-6 col-md-2">-->
+<!--                        Popravek <i>(v obdelavi)</i>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </a>-->
+
+<!--        &lt;!&ndash;                    Example of changed data that was refused by admin team&ndash;&gt;-->
+<!--        <a href="#" data-toggle="modal" data-target="#showCorrection" class = "list-group-item list-group-item-action list-group-item-danger">-->
+<!--            <div class = "container-fluid tableElement">-->
+<!--                <div class = row>-->
+<!--                    <div class = "col-4 col-md-1">-->
+<!--                        13.10-->
+<!--                    </div>-->
+<!--                    <div class = "col-8 col-md-3">-->
+<!--                        FRI 123 Menza-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6">-->
+<!--                        <i>Spremenjen naslov - neveljaven naslov</i>-->
+<!--                    </div>-->
+<!--                    <div class="col-6 col-md-2">-->
+<!--                        Popravek <i>(zavrnjen)</i>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </a>-->
+
+<!--    </div>-->
+
+    <div class = "row">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
+            <thead>
+            <tr>
+                <th scope="col" style="word-wrap: break-word">Datum</th>
+                <th scope="col" style="word-wrap: break-word">Komentar</th>
+                <th scope="col" style="word-wrap: break-word">Lokacija</th>
+                <th scope="col" style="word-wrap: break-word"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each comments as |comment|}}
+                <tr>
+                    <td style="word-wrap: break-word">{{date comment.date}}</td>
+                    <td style="word-wrap: break-word">{{comment.comment}}</td>
+                    <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
+                    <td>
+                        <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+
+                <!--    Modal for showing correction details-->
+                <div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Urejanje komentarja</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class = "modal-body">
+                                <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant}}</i></h6>
+
+                                <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">
+                                    <input type = hidden name="komentarID" value="{{comment._id}}">
+                                    <input type="hidden" value="/profile" name="returnADR">
+
+                                    <div class = "form-group">
+                                        <label for = "newCommentText">Komentar</label>
+                                        <textarea class="form-control" name = "newCommentText" rows = "5">{{comment.comment}}</textarea>
+                                    </div>
+
+                                    <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>
+                                    <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment._id}}">Izbriši</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!--    Modal for editing comments  -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="editComment">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "modal-body">
+                <h6 style = "margin-bottom: 25px"><i>Objavljeno, {{fullDate}}, na lokaciji: {{location}}</i></h6>
+
+                <form>
+                    <div class = "form-group">
+                        <label for = "comment">Komentar</label>
+                        <textarea class="form-control" id = comment rows = "5">{{comment}}</textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal">Posodobi</button>
+                    <button class="btn btn-danger" type="submit" data-dismiss="modal">Izbriši</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    Modal for showing correction details-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showCorrection">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "modal-body">
+                <h6 style = "margin-bottom: 25px"><i>Zavrnjen, 4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                <form>
+
+                    <div class="form-group">
+                        <label for="correctionType">Status</label>
+                        <input type="text" class="form-control" id="correctionType" value="Lokacija" readonly>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "corretionDescription">Opis popravka</label>
+                        <textarea class="form-control" id = "corretionDescription" rows = "5" readonly>Večna pot 112</textarea>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "adminComment">Opomba administratorja</label>
+                        <textarea class="form-control" id = "adminComment" rows = "5" readonly>Lokacija je napačna. Pravilna lokacija, je že vnešena.</textarea>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

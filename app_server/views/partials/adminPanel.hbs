@@ -1,0 +1,87 @@
+<!--            User panel (left size)      -->
+<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
+
+
+    <div class="row" style = "margin-top: 20px;">
+
+        <!--                    Switch to admin view (only if user is admin)-->
+        <div class = col>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="adminPageView" checked onclick="location.href = '/profile';">
+                <label class="custom-control-label" style = "color:white" for="adminPageView" onclick="location.href = '/profile';">Administratorski pogled</label>
+            </div>
+        </div>
+    </div>
+
+    <div class = "dataUnit" style="text-align: center; margin-top: 40px; margin-bottom: 40px">
+        <h3>Admin Dashboard</h3>
+        <hr style="border-color: white">
+
+    </div>
+
+<!--    <div class = "dataUnit" style = "margin-left: 25px">-->
+<!--        <button type="button" class="btn btn-lg menuElement" id = "default" onclick="location.href = '/admin';">-->
+<!--            Osnovni pogled-->
+<!--        </button>-->
+<!--    </div>-->
+
+    <div class = categoryName style = "margin-left: 25px; margin-bottom: 20px; margin-top: 40px">
+        Komponente sistema
+
+    </div>
+
+    <div class = "dataUnit" style = "margin-bottom: 10px">
+<!--        <div class="row tab">-->
+<!--            <button type="button" class="btn btn-lg menuElement" id = "waitingList" onclick="location.href = '/admin-waitinglist';">Čakalna vrsta</button>-->
+<!--        </div>-->
+
+        <div class="row tab">
+            <button type="button" class="btn btn-lg menuElement" id = "comments" onclick="location.href = '/admin-comments'; ">Komentarji</button>
+        </div>
+
+<!--        <div class="row tab">-->
+<!--            <button type="button" class="btn btn-lg menuElement" id = "rates" onclick="location.href = '/admin-rates'; ">Ocene</button>-->
+<!--        </div>-->
+
+        <div class="row tab">
+            <button type="button" class="btn btn-lg menuElement" id = "locations" onclick="location.href = '/admin-locations'; ">Lokacije</button>
+        </div>
+
+        <div class="row tab">
+            <button type="button" class="btn btn-lg menuElement" id = "locations" style = "margin-left: 20px" onclick="location.href = '/restaurant-add'; ">Dodaj lokacijo</button>
+        </div>
+
+        <div class="row tab">
+            <button type="button" class="btn btn-lg menuElement" id = "users" onclick="location.href = '/users'; ">Uporabniki</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var viewName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    var view;
+
+    switch (viewName) {
+        case "admin-comments":
+            view = document.getElementById("comments");
+            break;
+        case "admin-rates":
+            view = document.getElementById("rates");
+            break;
+        case "admin-locations":
+            view = document.getElementById("locations");
+            break;
+        case "users":
+            view = document.getElementById("users");
+            break;
+        case "admin-waitinglist":
+            view = document.getElementById("waitingList");
+            break;
+        default:
+            view = document.getElementById("default");
+    }
+
+    view.style.fontWeight = "bold";
+
+    console.log(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+</script>

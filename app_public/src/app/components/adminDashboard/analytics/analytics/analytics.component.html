@@ -1,0 +1,29 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+
+    <!--            User panel (left size)      -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
+      <app-admin-panel></app-admin-panel>
+    </div>
+
+    <!--            User activities - double click to show more info in new panel    -->
+    <div class = "col userActivities">
+
+      <div class = "row">
+        <div class = "col">
+          <h3 style = "margin-bottom: 30px">Analitika strani</h3>
+        </div>
+      </div>
+      <!-- implementiraj graf -->
+      <div style="display: block;" class="chart col-lg-8">
+        <canvas baseChart
+
+                [datasets]="labelMFL"
+                [labels]="chartLabels"
+                [options]="lineChartOptions"
+                [chartType]="ChartType"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>

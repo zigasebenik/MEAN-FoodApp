@@ -1,0 +1,65 @@
+<div *ngIf="restavracija == undefined" class="alert alert-danger" role="alert">
+  <p> Loading Restaurant :( </p>
+</div>
+
+
+<div class="container" *ngIf="restavracija != undefined">
+
+<!--<div class="jumbotron">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <img class="img-fluid rs-image" *ngIf="restavracija != undefined" src="./assets/{{restavracija.front}}" alt="Naslovna slika" style="width: 100vw">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+  <!-- Example row of columns -->
+
+  <div class="row">
+    <div>
+      <h1>{{restavracija.name}}</h1>
+      <h2>Opis</h2>
+      <p>{{restavracija.description}}</p>
+    </div>
+  </div>
+
+
+<div class="jumbotron mb-5" >
+  <div class="container ">
+    <div class="row">
+      <h2>Urnik</h2><br>
+    </div>
+    <div class="row mt-4">
+
+      <table class="table" *ngIf="restavracija != undefined && restavracija.timeTable.monday.length > 0">
+          <tr>
+            <td *ngFor="let dan of restavracija.timeTable | keyvalue: originalOrder">{{dan.key}}</td>
+          </tr>
+
+          <tr >
+            <td *ngFor="let dan of restavracija.timeTable | keyvalue: originalOrder">{{dan.value}}</td>
+          </tr>
+      </table>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row mt-4 justify-content-end mt-2 ">
+    <a class="btn btn-primary btn-lg" [routerLink]="['/commentPage',restaurantPathID,1]" role="button">Glej komentarje</a>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<!--<script src="javascripts/popper.min.js"></script>-->
+<!--<script src="javascripts/bootstrap.min.js"></script>-->
+
+</div>

@@ -1,0 +1,321 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">-->
+<!--  <link rel="stylesheet" type="text/css" href="stylesheets/restaurant-add.css">-->
+<!--  <script src="javascripts/restaurantAddValidation.ts"></script>-->
+<!--  <title>Restaurant Add</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+
+<div *ngIf="formError" class="alert alert-danger" role="alert">
+  {{formError}}
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-0"></div>
+    <div class="col-md-4 col-sm-12 header1">
+      <h1>Dodaj novo restavracijo</h1>
+    </div>
+    <div class="col-md-4 col-sm-0"></div>
+  </div>
+  <form id="restaurantAdd" (ngSubmit)="dodajRestavracijo()" [attr.id]="'restaurantAddForm'">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3 bc1">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="inputRestaurantName">Ime restavracije</label>
+              <input type="text" class="form-control first-form" id="inputRestaurantName" name="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Ime restavracije" required>
+              <small id="restNameHelp" class="form-text text-muted">Tukaj vnesite polno ime restavracije.</small>
+            </div>
+            <div class="form-group">
+              <label for="inputRestaurantAddress">Naslov restavracije</label>
+              <input type="text" class="form-control first-form" id="inputRestaurantAddress" name="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Lokacija restavracije" required>
+              <small id="restAddHelp" class="form-text text-muted">Tukaj vnesite točen naslov restavracije.</small>
+            </div>
+            <div class="form-group">
+              <label for="inputRestaurantDescription">Opis restavracije</label>
+              <textarea class="form-control first-form" id="inputRestaurantDescription" name="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije" required></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <span>Ali lahko v vaši restavraciji študentje uporabljajo študentske bone?</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="boni" id="inputBoniYes" value="option1" onclick="checkedYes()" checked>
+              <label class="form-check-label" >
+                Da
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="boni" id="inputBoniNo" value="option2" onclick="checkedNo()">
+              <label class="form-check-label">
+                Ne
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="separate"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="form-row add-pay-form">
+              <label >Koliko stane doplačilo študentskega menija?</label>
+              <div class="input-group add-pay-form-input">
+                <input type="number"  min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost" name="inputBoniCost"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="separate"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="form-row add-pay-form">
+              <label>Koliko stane povprečna dnevna malica?</label>
+              <div class="input-group add-pay-form-input">
+                <input type="number" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputMealCost" name="inputMealCost" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--        <div class="col-md-1"></div>-->
+      <div class="col-md-3 bc">
+        <div class="separate"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>Kdaj je restavracija odprta na posamezen dan?</span>
+          </div>
+        </div>
+        <div class="separate-2"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Ponedeljek:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputMondayFrom" name="inputMondayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputMondayTo" name="inputMondayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openMonday" name="openMonday" onclick="zaprtoMonday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Torek:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputTuesdayFrom" name="inputTuesdayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputTuesdayTo" name="inputTuesdayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openTuesday" name="openTuesday" onclick="zaprtoTuesday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Sreda:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputWednesdayFrom" name="inputWednesdayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputWednesdayTo" name="inputWednesdayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openWednesday" name="openWednesday" onclick="zaprtoWednesday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Četrtek:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputThursdayFrom" name="inputThursdayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputThursdayTo" name="inputThursdayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openThursday" name="openThursday" onclick="zaprtoThursday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Petek:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputFridayFrom" name="inputFridayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputFridayTo" name="inputFridayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openFriday" name="openFriday" onclick="zaprtoFriday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Sobota:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSaturdayFrom" name="inputSaturdayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSaturdayTo" name="inputSaturdayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openSaturday" name="openSaturday" onclick="zaprtoSaturday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+            <div class="separate-2"></div>
+            <div class="form-row day-row">
+              <div class="col-md-5 day-label">
+                <span>Nedelja:</span>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSundayFrom" name="inputSundayFrom" required>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label>
+                  <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSundayTo" name="inputSundayTo" required>
+                </label>
+              </div>
+              <div class="col-md-3" style="margin-top: 5px">
+                <input type="checkbox" id="openSunday" name="openSunday" onclick="zaprtoSunday()">
+                <span>Zaprto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--        <div class="separate"></div>-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-12 col-sm-12">-->
+<!--            <div class="row md-form">-->
+<!--              <div class="col-md-12 col-sm-12">-->
+<!--                &lt;!&ndash; PLACEHOLDER IMAGE&ndash;&gt;-->
+<!--                <img id="output2" width="200vh" />-->
+<!--                <p><label for="file2" style="cursor: pointer;"><b>Izberi ikono restavracije</b></label></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-12 col-sm-12">-->
+<!--                <div class="file-field">-->
+<!--                  <input type="file" class="form-control-file" accept="image/*" name="ikonaRestavracije" id="file2"  (change)="onFileSelectIcon($event)" style="display: none;">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="separate"></div>-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-12 col-sm-12">-->
+<!--            <div class="row md-form">-->
+<!--              <div class="col-md-12 col-sm-12">-->
+<!--                &lt;!&ndash; PLACEHOLDER IMAGE&ndash;&gt;-->
+<!--                <img id="output" width="200vh" />-->
+<!--                <p><label for="file" style="cursor: pointer;"><b>Izberi naslovno sliko restavracije</b></label></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-12 col-sm-12">-->
+<!--                <div class="file-field">-->
+<!--                  &lt;!&ndash;<form action="/api/upload" method="post" enctype="multipart/form-data">-->
+<!--                    <input  (change)="fileChange($event)"  type="file"  class="custom-file-input"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">-->
+<!--                  </form>-->
+<!--                  <span  class="input-group-text upload"  (click)="upload()"  id="btnUpload">Upload</span>-->
+<!--                    &ndash;&gt;-->
+<!--                  <input type="file" #file class="form-control-file" accept="image/*" name="naslovnaSlika" id="file"  (change)="onFilesAdded()" style="display: none;">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="separate"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group mt-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" name="terms" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                  Se strinjate s splošnimi <a (click)="this.openModal2()" style="color: lightskyblue; cursor: pointer">pogoji</a> uporabe strani.
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="separate"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-0"></div>
+      <div class="col-md-3 col-sm-12">
+
+        <div class="row">
+          <div class="col-md-12">
+            <button [attr.type]="'submit'" class="btn btn-primary mt-3" [attr.form]="'restaurantAddForm'">Oddaj</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-0"></div>
+    </div>
+  </form>
+</div>
+<!--<script src="javascripts/popper.min.js"></script>-->
+<!--<script src="javascripts/bootstrap.min.js"></script>-->
+<!--<script src="javascripts/jquery-3.4.1.min.js"></script>-->
+<!--</body>-->
+
+<!--</html>-->

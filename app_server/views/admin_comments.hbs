@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Komentarji</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="/stylesheets/AdminDashboard.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+
+        <!--            User panel (left size)      -->
+        {{> adminPanel}}
+
+        <!--            User activities - double click to show more info in new panel    -->
+        <div class = "col userActivities">
+
+            <div class = "row">
+                <div class = "col">
+                    <h3 style = "margin-bottom: 30px">Komentarji</h3>
+                </div>
+<!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+<!--                    <div class="input-group mb-2">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fas fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+
+            </div>
+
+            <div class = "row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#id</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Komentar</th>
+                        <th scope="col">Lokacija</th>
+                        <th scope="col">Uporabnik</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each comments as |comment|}}
+                        <table class="table" style="table-layout: fixed; width: 100%">
+                            <tr>
+                                <th scope="row" style="word-wrap: break-word">{{comment._id}}</th>
+                                <td style="word-wrap: break-word">{{date comment.date}}</td>
+                                <td style="word-wrap: break-word">{{comment.comment}}</td>
+                                <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
+                                <td style="word-wrap: break-word">{{comment.author.name}} {{comment.author.surname}}</td>
+                                <td style="word-wrap: break-word">
+                                    <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--    Modal for showing correction details-->
+                        <div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Podrobnosti elementa</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class = "modal-body">
+                                        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant.name}}</i></h6>
+
+                                        <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">
+                                            <input type = hidden name="komentarID" value="{{comment._id}}">
+                                            <input type="hidden" value="/admin-comments" name="returnADR">
+                                            <input type="hidden" value="{{comment.author._id}}" name = "author">
+                                            <div class="form-group">
+                                                <label for="user">Uporabnik</label>
+                                                <input type="text" class="form-control" id="user" value="{{comment.author.name}} {{comment.author.surname}}" readonly>
+                                            </div>
+
+                                            <div class = "form-group">
+                                                <label for = "corretionDescription">Komentar</label>
+                                                <textarea class="form-control" name = "newCommentText" required="required" rows = "5">{{comment.comment}}</textarea>
+                                            </div>
+
+                                            <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>
+                                            <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment._id}}">Izbriši</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</body>
+
+</html>

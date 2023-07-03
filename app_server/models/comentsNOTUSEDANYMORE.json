@@ -1,0 +1,32 @@
+{
+  "title": "Comments",
+  "restaurantName": "KRNEKI",
+  "komentarji": [
+    {
+      "id": "1",
+      "opis": "TOOOOOOOOOOOO je komentar 1",
+      "naslov": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "ocena": 3,
+      "lastnosti": [
+        "slikovit razgled",
+        "vstopnina",
+        "otrokom prijazno"
+      ],
+      "razdalja": "700m"
+    },
+    {
+      "id": "2",
+      "opis": "komentar 2",
+      "naslov": "Večna pot 70, 1000 Ljubljana, Slovenia",
+      "ocena": 4,
+      "lastnosti": [
+        "priporočljivo za otroke",
+        "živali",
+        "parkirišče je na voljo",
+        "vstopnina"
+      ],
+      "razdalja": "85km"
+    }
+
+  ]
+}

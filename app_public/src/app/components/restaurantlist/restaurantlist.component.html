@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="column col-md-6 col-sm-0 col-xs-0">
+      <div class="row">
+        <div class="col-md-1 col-sm-0 col-xs-0"></div>
+        <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
+          <!-- Each restaurant loaded is shown here -->
+          <div class="row-fill mb-4">
+            <form (click)="refreshRestaurants()">
+              <button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button>
+            </form>
+          </div>
+          <div *ngIf="restaurants">
+            <div class="restaurant mb-4 "    tabindex="1" *ngFor="let restaurant of restaurants"
+                 (click)="handleAddress(restaurant.address)">
+              <div class="row" >
+                <div class="col-md-6 col-sm-12" >
+                  <h1>{{restaurant.name}}</h1>
+                  <p>{{restaurant.address}}</p>
+                  <p id="{{restaurant._id}}" class="rs-rating"></p>
+                  <app-zvezdice [ocena]="restaurant.rating"></app-zvezdice>
+                  <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
+                  <p *ngIf="restaurant.student">Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
+                  <button  type="button" [routerLink]="'restaurantView' | transformLink:restaurant._id" class="btn btn-link">Več o restavraciji</button><br>
+                  <button type="button" [routerLink]="'commentPage' | transformLink2:restaurant._id:'1'" class="btn btn-link mb-4">Oceni in komentiraj</button>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                      <img *ngIf="restaurant.student" class="rs-image-logo" src="./assets/images/student/boni.png"
+                           alt="Boni so">
+                      <img *ngIf="!restaurant.student" class="rs-image-logo" src="./assets/images/student/boni_ne.png"
+                           alt="Boni niso">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                      <!--                      <img class="rs-image-logo" src="{{restaurant.icon}}" alt="Ikona">-->
+                    </div>
+                  </div>
+                  <div class="row rs-image-row">
+                    <div class="col-md-12 col-sm-12">
+                      <!--                      <img class="img-fluid rs-image" src="{{restaurant.front}}" alt="Naslovna slika">-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="googleRestaurants">
+            <div *ngIf="googleRestaurants.length == 0 && (restaurants == undefined || restaurants.length == 0)"
+                 class="warning alert-warning"
+                 role="alert">
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{error}}
+              </div>
+            </div>
+            <div class="restaurant" tabindex="1" *ngFor="let restaurant of googleRestaurants">
+              <div class="row" (click)="handleAddress(restaurant.formatted_address)">
+                <div class="col-md-6 col-sm-12">
+                  <h1>{{restaurant.name}}</h1>
+                  <p>{{restaurant.formatted_address}}</p>
+                  <app-zvezdice [ocena]="restaurant.rating"></app-zvezdice>
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-1 col-sm-1 col-xs-1">
+<!--                    <img class="rs-image-logo" src="{{restaurant.icon}}" alt="Ikona">-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-fill"></div>
+        </div>
+      </div>
+    </div>
+    <div class="google-maps col-md-6 col-sm-0 col-xs-0">
+      <div #mapContainer id="googleMap"></div>
+    </div>
+  </div>
+</div>
+
+

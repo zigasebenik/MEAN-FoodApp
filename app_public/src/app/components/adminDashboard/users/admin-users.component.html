@@ -1,0 +1,110 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+
+    <!--            User panel (left size)      -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
+      <app-admin-panel></app-admin-panel>
+    </div>
+
+    <!--            User activities - double click to show more info in new panel    -->
+    <div class = "col userActivities">
+
+      <div class = "row">
+        <div class = "col">
+          <h3 style = "margin-bottom: 30px">Uporabniki</h3>
+        </div>
+        <!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+        <!--                    <div class="input-group mb-2">-->
+        <!--                        <div class="input-group-prepend">-->
+        <!--                            <div class="input-group-text">-->
+        <!--                                <i class="fas fa-search"></i>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+      </div>
+
+      <div class = "row">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
+          <thead>
+          <tr>
+            <th scope="col" style="word-wrap: break-word">#id</th>
+            <th scope="col" style="word-wrap: break-word">Ime</th>
+            <th scope="col" style="word-wrap: break-word">Priimek</th>
+            <th scope="col" style="word-wrap: break-word">email</th>
+            <th scope="col" style="word-wrap: break-word"></th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let user of users">
+            <th scope="row" style="word-wrap: break-word">{{user._id}}</th>
+            <td style="word-wrap: break-word">{{user.name}}</td>
+            <td style="word-wrap: break-word">{{user.surname}}</td>
+            <td style="word-wrap: break-word">{{user.email}}</td>
+            <td>
+                <i class="fas fa-edit" (click) = "redirect(user)"></i>
+            </td>
+          </tr>
+
+
+<!--          &lt;!&ndash;    Modal for showing correction details&ndash;&gt;-->
+<!--          <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="{{ user._id}}">-->
+<!--            <div class="modal-dialog" role="document">-->
+<!--              <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                  <h5 class="modal-title">Podrobnosti uporabnika</h5>-->
+<!--                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--                <div class = "modal-body">-->
+
+<!--                  <form method="post" id = "{{changeID user._id}}" action = "api/users">-->
+<!--                    <input type="hidden" name = "returnADR" value="/admin-users">-->
+<!--                    <input type="hidden" name = "userID" value="{{user._id}}">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="user">Uporabnik</label>-->
+<!--                      <div class="row">-->
+<!--                        <div class="col">-->
+<!--                          <input type="text" class="form-control" id="userID" name="userID" value="{{user._id}}" disabled>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                      <label for="name">Ime in priimek</label>-->
+<!--                      <div class="row">-->
+<!--                        <div class="col-md-6">-->
+<!--                          <input type="text" class="form-control" id="name" name="name" pattern="^[a-zA-Z\s]*$" required="required" value="{{user.name}}">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                          <input type="text" class="form-control" id="surname" name="surname" pattern="^[a-zA-Z\s]*$" required="required" value="{{user.surname}}">-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                      <label for="mail">Email</label>-->
+<!--                      <input type="email" class="form-control" id="mail" name = "email" required="required" value="{{user.email}}">-->
+<!--                    </div>-->
+
+<!--                    <button class="btn btn-success" type="submit" form = {{changeID user._id}} >Posodobi</button>-->
+
+<!--                  </form>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>

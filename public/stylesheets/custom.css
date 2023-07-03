@@ -1,0 +1,14 @@
+/*
+    File for overriding default bootstrap css
+    Class must have same name as is in Bootstrap  library
+*/
+
+.btn.btn-primary {
+    background: var(--darkBlue);
+    border-color: var(--darkBlue);
+}
+
+.form-control:focus {
+    border-color: var(--darkBlue);
+    box-shadow: inset 0 1px 1px var(--lightGrey), 0 0 8px var(--lightGrey);
+}

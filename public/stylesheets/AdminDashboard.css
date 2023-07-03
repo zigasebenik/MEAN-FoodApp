@@ -1,0 +1,40 @@
+@import "custom.css";
+@import "StyleSheet.css";
+@import "UserPageStyle.css";
+
+.tab {
+    margin-left: 30px;
+}
+
+.menuElement {
+    color: white;
+    font-size: 18px;
+}
+
+.card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color:white;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-repeat: no-repeat;
+}
+
+.waitingListCard{
+    background: #dc3545;
+    background-image: url("/images/admin/waitingList-background.png");
+    background-repeat: no-repeat;
+}
+
+.usersCard{
+    background: #17a2b8;
+    background-image: url("/images/admin/usersCard-background.png");
+    background-repeat: no-repeat;
+}
+
+.locationsCard{
+    background: #28a745;
+    background-image: url("/images/admin/locationsCard-background.png");
+    background-repeat: no-repeat;
+}
